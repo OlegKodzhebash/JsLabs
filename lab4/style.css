@@ -1,0 +1,32 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  tr.green {
+    background-color: #d4edda;
+  }
+  
+  tr.red {
+    background-color: #f8d7da;
+  }
+  
+  #full-description {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    background-color: #f0f0f0;
+  }
+  
