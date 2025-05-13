@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanilla JS Calculator</title>
+  <style>
+    :root {
+      --primary: #4285f4;
+      --primary-dark: #3367d6;
+      --secondary: #f1f3f4;
+      --secondary-dark: #dadce0;
+      --display-bg: #202124;
+      --text-dark: #202124;
+      --text-light: #f8f9fa;
+    }
+    
+    body {
+      font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+    }
+    
+    .calculator {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.1),
+        0 20px 48px rgba(0, 0, 0, 0.1),
+        0 1px 4px rgba(0, 0, 0, 0.1);
+      width: 340px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    
+    .calculator:hover {
+      transform: translateY(-5px);
+    }
+    
+    #display {
+      width: 100%;
+      height: 80px;
+      font-size: 36px;
+      margin-bottom: 20px;
+      padding: 10px 15px;
+      text-align: right;
+      border: none;
+      background-color: var(--display-bg);
+      color: white;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font-weight: 300;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    
+    button {
+      padding: 18px;
+      font-size: 20px;
+      cursor: pointer;
+      border: none;
+      background-color: var(--secondary);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+      color: var(--text-dark);
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    button:hover {
+      background-color: var(--secondary-dark);
+      transform: translateY(-2px);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    button[data-value="/"],
+    button[data-value="*"],
+    button[data-value="-"],
+    button[data-value="+"] {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    button[data-value="/"]:hover,
+    button[data-value="*"]:hover,
+    button[data-value="-"]:hover,
+    button[data-value="+"]:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    button[data-action="calculate"] {
+      background-color: var(--primary);
+      color: white;
+      grid-row: span 2;
+      height: auto;
+    }
+    
+    button[data-action="calculate"]:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    button.zero {
+      grid-column: span 2;
+    }
+    
+    button[data-action="clear"],
+    button[data-action="delete"] {
+      font-size: 18px;
+    }
+    
+    /* Эффект волны при нажатии */
+    button::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+    
+    button:focus:not(:active)::after {
+      animation: ripple 0.6s ease-out;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" readonly />
+    <div class="buttons">
+      <button data-action="clear">C</button>
+      <button data-action="delete">←</button>
+      <button data-value="/">÷</button>
+      <button data-value="*">×</button>
+
+      <button data-value="7">7</button>
+      <button data-value="8">8</button>
+      <button data-value="9">9</button>
+      <button data-value="-">−</button>
+
+      <button data-value="4">4</button>
+      <button data-value="5">5</button>
+      <button data-value="6">6</button>
+      <button data-value="+">+</button>
+
+      <button data-value="1">1</button>
+      <button data-value="2">2</button>
+      <button data-value="3">3</button>
+      <button data-action="calculate">=</button>
+
+      <button data-value="0" class="zero">0</button>
+      <button data-value=".">.</button>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
